@@ -16,9 +16,9 @@ func _ready():
 
 
 func set_tree_to_children_recursively(task):
+	task.tree = self
 	for child in task.get_children():
 		set_tree_to_children_recursively(child)
-		child.tree = self
 	pass 
 
 

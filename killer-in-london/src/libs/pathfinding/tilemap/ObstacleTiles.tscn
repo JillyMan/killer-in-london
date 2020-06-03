@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/obstacle.png" type="Texture" id=1]
+[ext_resource path="res://src/libs/pathfinding/tilemap/assets/obstacle.png" type="Texture" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
+extents = Vector2( 8, 8 )
 
 [node name="ObstacleTiles" type="Node2D"]
 

@@ -1,3 +1,4 @@
+tool
 class_name AstarGridPathfinder
 extends TileMap
 
@@ -21,6 +22,12 @@ func _ready():
 		astar_connect_walkable_cells_diagonal(walkable_cells_list)
 	else:
 		astar_connect_walkable_cells(walkable_cells_list)
+
+
+func _process(delta):
+	if debug_mode:
+		update()
+
 
 # Loops through all cells within the map's bounds and
 # adds all points to the astar_node, except the obstacles.
@@ -116,15 +123,15 @@ func calculate_path(world_start, world_end):
 
 
 func _draw():
-	if !debug_mode:
+	if not debug_mode:
 		return 
 	
 	var pos = Vector2(
-		global_position.x + map_size.x,
-		global_position.y + map_size.y
+		position.x,
+		position.y
 	)
 	
-	var rect = Rect2(pos, map_size * 32)
+	var rect = Rect2(pos, map_size * cell_size)
 	#var pos = global_position
 	#draw_line(pos, pos + Vector2(map_size.x * 32, 0), Color.red)
 	draw_rect(rect, Color(1, 0, 0, 0.3))

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/entities/characters/ai/movable_ai/MovableAI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/entities/characters/enemies/common_enemy/CommonEnemy.gd" type="Script" id=2]
+[ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=3]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/BehaviorTree.gd" type="Script" id=4]
+[ext_resource path="res://src/behavior_tree_extensions/actions/CallMethodAction.gd" type="Script" id=5]
+
+[node name="CommonEnemy" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+position = Vector2( 0.298321, -16.2087 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 48, 416, 16, 32 )
+
+[node name="SignRayCast" type="RayCast2D" parent="." index="1"]
+enabled = true
+
+[node name="BehaviorTree" type="Node" parent="." index="2"]
+script = ExtResource( 4 )
+host_node_path = NodePath("..")
+
+[node name="CallMethodAction" type="Node" parent="BehaviorTree" index="0"]
+script = ExtResource( 5 )
+method_name = "shoot"
