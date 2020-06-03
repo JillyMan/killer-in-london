@@ -1,0 +1,190 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "BehaviorTree",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/BehaviorTree.gd"
+}, {
+"base": "Reference",
+"class": "BranchTask",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/BranchTask.gd"
+}, {
+"base": "Reference",
+"class": "ConfigurationNotificationUtil",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/util/ConfigurationNotificationUtil.gd"
+}, {
+"base": "Area2D",
+"class": "DamageProducer",
+"language": "GDScript",
+"path": "res://src/libs/damage_system/DamageProducer.gd"
+}, {
+"base": "Reference",
+"class": "Decorator",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/Decorator.gd"
+}, {
+"base": "Reference",
+"class": "DynamicGuardSelector",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/branch_task/DynamicGuardSelector.gd"
+}, {
+"base": "Node",
+"class": "FSM",
+"language": "GDScript",
+"path": "res://src/libs/fsm/FSM.gd"
+}, {
+"base": "Reference",
+"class": "Failure",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/leaf/Failure.gd"
+}, {
+"base": "Reference",
+"class": "GuardDecorator",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/GuardDecorator.gd"
+}, {
+"base": "Node",
+"class": "HealthPoints",
+"language": "GDScript",
+"path": "res://src/libs/damage_system/HealthPoints.gd"
+}, {
+"base": "Area2D",
+"class": "HitBox",
+"language": "GDScript",
+"path": "res://src/libs/damage_system/HitBox.gd"
+}, {
+"base": "Reference",
+"class": "Includer",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/decorator/Includer.gd"
+}, {
+"base": "Reference",
+"class": "Inverter",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/decorator/Inverter.gd"
+}, {
+"base": "Reference",
+"class": "LeafTask",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/LeafTask.gd"
+}, {
+"base": "Reference",
+"class": "LoopDecorator",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/LoopDecorator.gd"
+}, {
+"base": "Reference",
+"class": "Parallel",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/branch_task/Parallel.gd"
+}, {
+"base": "Reference",
+"class": "RandomSelector",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/branch_task/RandomSelector.gd"
+}, {
+"base": "Reference",
+"class": "RandomSequence",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/branch_task/RandomSequence.gd"
+}, {
+"base": "Reference",
+"class": "Repeater",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/decorator/Repeater.gd"
+}, {
+"base": "Reference",
+"class": "Selector",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/branch_task/Selector.gd"
+}, {
+"base": "Reference",
+"class": "Sequence",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/branch_task/Sequence.gd"
+}, {
+"base": "Reference",
+"class": "SingleRunningChildBranchTask",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/SingleRunningChildBranchTask.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://src/libs/fsm/State.gd"
+}, {
+"base": "Reference",
+"class": "Success",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/leaf/Success.gd"
+}, {
+"base": "Reference",
+"class": "Task",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/Task.gd"
+}, {
+"base": "Reference",
+"class": "Waiter",
+"language": "GDScript",
+"path": "res://addons/libgdx-behavior-tree/src/btree/decorator/Waiter.gd"
+} ]
+_global_script_class_icons={
+"BehaviorTree": "",
+"BranchTask": "",
+"ConfigurationNotificationUtil": "",
+"DamageProducer": "",
+"Decorator": "",
+"DynamicGuardSelector": "",
+"FSM": "",
+"Failure": "",
+"GuardDecorator": "",
+"HealthPoints": "",
+"HitBox": "",
+"Includer": "",
+"Inverter": "",
+"LeafTask": "",
+"LoopDecorator": "",
+"Parallel": "",
+"RandomSelector": "",
+"RandomSequence": "",
+"Repeater": "",
+"Selector": "",
+"Sequence": "",
+"SingleRunningChildBranchTask": "",
+"State": "",
+"Success": "",
+"Task": "",
+"Waiter": ""
+}
+
+[application]
+
+config/name="killer-in-london"
+run/main_scene="res://src/Main.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=512
+window/size/height=288
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "libgdx-behavior-tree" )
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
