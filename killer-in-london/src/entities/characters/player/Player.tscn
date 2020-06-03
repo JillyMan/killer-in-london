@@ -1,3 +1,29 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/entities/characters/player/Player.gd" type="Script" id=1]
+[ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=2]
+[ext_resource path="res://src/entities/environment/weapon/Axe.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.79388, 16.1909 )
 
 [node name="Player" type="KinematicBody2D"]
+position = Vector2( 8.3907, 18.3468 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 1.2264, -1.66709 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.823181, -1.68203 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 80, 416, 16, 32 )
+
+[node name="Axe" parent="." instance=ExtResource( 3 )]
+position = Vector2( 9.69048, -6.56307 )
+rotation = 1.942
+collision_layer = 2
+collision_mask = 2
