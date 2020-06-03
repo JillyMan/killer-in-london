@@ -174,10 +174,6 @@ config/name="killer-in-london"
 run/main_scene="res://src/Main.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-Singleton="*res://Singleton.gd"
-
 [display]
 
 window/size/width=512
