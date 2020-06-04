@@ -1,16 +1,30 @@
 extends KinematicBody2D
 
-onready var axe = get_node("Axe")
-
 export var speed: float = 100.0
 export var dash_speed: float = 50.0
+export var axe_scene : PackedScene
+
+var axe : Axe
 
 var last_mouse_pos : Vector2
 var axe_throw_speed : float = 12
-var is_weapon_throwed : bool = false
 var time_to_throw_in_sec : float = 1
 
 var with_axe : bool = true
+var is_coming_axe : bool = false
+
+func _ready():
+	axe = axe_scene.instance()
+	add_child(axe)
+	axe.connect("end_of_throwing", self, "_axe_comeback")
+
+func _axe_comeback():
+	if not with_axe and is_coming_axe:
+		get_tree().current_scene.remove_child(axe)
+		add_child(axe)
+		axe.position = Vector2.ZERO
+		with_axe = true
+		is_coming_axe = false
 
 func _get_velocity_by_input() -> Vector2:
 	var v = Vector2.ZERO
@@ -35,45 +49,34 @@ func _check_move():
 	if Input.is_action_just_pressed("player_dash"):
 		speed += 400
 
-func _animate_axe_throwing(delta) -> void:
-	var length_btw_axe_and_mouse_pos = (axe.position - last_mouse_pos).length()
-	if length_btw_axe_and_mouse_pos < 0.5:
-		is_weapon_throwed = false
-		return
+func throw_weapon(dest_point):
+	with_axe = false
+	var prev_pos = axe.global_position
+	remove_child(axe)
+	get_tree().current_scene.add_child(axe)
+	axe.global_position = prev_pos
+	axe.throw(dest_point)
 
-	axe.position = axe.position.linear_interpolate(last_mouse_pos, delta * axe_throw_speed)
-	axe.rotate(delta * length_btw_axe_and_mouse_pos)
-
-	return
-
-func _animate_axe_comeback(delta) -> void:
-	var len_btw_playar_and_axe = (axe.position - position).length()
-	if (len_btw_playar_and_axe < 0.5):
-		with_axe = false
-		return
-
-	axe.position = axe.position.linear_interpolate(position, delta * axe_throw_speed)
-	axe.rotate(-delta * len_btw_playar_and_axe)
-	return
+func return_weapon():
+	is_coming_axe = true
+	axe.throw(global_position)
 
 func _check_mouse(delta):
-	if Input.is_action_just_pressed("mouse_attack"):
-		axe.rotate(-PI/2)
-	if Input.is_action_just_released("mouse_attack"):
-		axe.rotate(PI/2)
+	var weapon_was_throwed = axe.was_throwed()
+
+	if with_axe: 
+		if Input.is_action_just_pressed("mouse_attack"):
+			axe.rotate(PI/2)
+		if Input.is_action_just_released("mouse_attack"):
+			axe.rotate(-PI/2)
 
 	var is_throw_weapon_pressed = Input.is_action_just_pressed("mouse_throw_weapon")
-
-	if with_axe and is_throw_weapon_pressed:
-		is_weapon_throwed = true
-		with_axe = false
-		last_mouse_pos = get_local_mouse_position()
-
-	if not with_axe and is_weapon_throwed:
-		_animate_axe_throwing(delta)
-
-	if is_throw_weapon_pressed and not with_axe:
-		_animate_axe_comeback(delta)
+	if is_throw_weapon_pressed:
+		if with_axe:
+			throw_weapon(get_global_mouse_position())
+		elif not is_coming_axe:
+			return_weapon()
+	pass
 
 func _move_update(delta):
 	_check_move()
