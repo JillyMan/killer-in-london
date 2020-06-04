@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "FSM",
+"class": "AxeFSM",
+"language": "GDScript",
+"path": "res://src/entities/environment/weapon/axe/FSMAxe.gd"
+}, {
 "base": "Task",
 "class": "BehaviorTree",
 "language": "GDScript",
@@ -140,6 +145,7 @@ _global_script_classes=[ {
 "path": "res://addons/libgdx-behavior-tree/src/btree/decorator/Waiter.gd"
 } ]
 _global_script_class_icons={
+"AxeFSM": "",
 "BehaviorTree": "res://addons/libgdx-behavior-tree/assets/icons/root_icon.png",
 "BranchTask": "res://addons/libgdx-behavior-tree/assets/icons/branch_task.png",
 "ConfigurationNotificationUtil": "",

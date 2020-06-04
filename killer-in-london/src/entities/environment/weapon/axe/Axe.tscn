@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=1]
 [ext_resource path="res://src/entities/environment/weapon/axe/Axe.gd" type="Script" id=2]
-[ext_resource path="res://src/libs/fsm/FSM.gd" type="Script" id=3]
+[ext_resource path="res://src/entities/environment/weapon/axe/FSMAxe.gd" type="Script" id=3]
 [ext_resource path="res://src/entities/environment/weapon/axe/state/Comeback.gd" type="Script" id=4]
 [ext_resource path="res://src/entities/environment/weapon/axe/state/Idle.gd" type="Script" id=5]
 [ext_resource path="res://src/entities/environment/weapon/axe/state/Throwing.gd" type="Script" id=6]
