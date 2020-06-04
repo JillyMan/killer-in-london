@@ -16,3 +16,9 @@ func execute() -> int:
 		return self.Status.SUCCEEDED
 	
 	return self.Status.RUNNING
+
+
+func end():
+	var host = tree.host
+	host.current_movement_target = null
+	pass

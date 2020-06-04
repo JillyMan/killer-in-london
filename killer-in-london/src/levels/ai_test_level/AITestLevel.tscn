@@ -8,18 +8,20 @@
 
 [node name="NavigationMap" parent="." index="0"]
 tile_data = PoolIntArray( 7, 0, 0, 8, 0, 0, 65543, 0, 0, 65544, 0, 0, 131079, 0, 0, 131080, 0, 0, 196615, 0, 0, 196616, 0, 0, 262151, 0, 0, 262152, 0, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0, 458767, 0, 0, 524288, 0, 0, 524289, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524299, 0, 0, 524300, 0, 0, 524301, 0, 0, 524302, 0, 0, 524303, 0, 0, 720903, 0, 0, 720904, 0, 0, 786439, 0, 0, 786440, 0, 0, 851975, 0, 0, 851976, 0, 0, 917511, 0, 0, 917512, 0, 0, 983047, 0, 0, 983048, 0, 0 )
-map_size = Vector2( 16, 16 )
 debug_mode = true
 allow_diagonal_connection = true
 
-[node name="CommonEnemy" parent="." index="1" instance=ExtResource( 2 )]
-position = Vector2( 129.838, 130.718 )
+[node name="YSort" type="YSort" parent="." index="1"]
+
+[node name="CommonEnemy" parent="YSort" index="0" instance=ExtResource( 2 )]
+position = Vector2( 7.91913, 7.33611 )
 max_speed = 350.0
 slowing_radius = 16.0
 destination_radius = 32.0
 mass = 10.0
 enemy_node_path = NodePath("../Player")
 
-[node name="Player" parent="." index="2" instance=ExtResource( 3 )]
-position = Vector2( 183.978, 55.4101 )
-collision_mask = 0
+[node name="Player" parent="YSort" index="1" instance=ExtResource( 3 )]
+position = Vector2( 243.474, 248.53 )
+
+[node name="Projectiles" type="Node" parent="YSort" index="2"]

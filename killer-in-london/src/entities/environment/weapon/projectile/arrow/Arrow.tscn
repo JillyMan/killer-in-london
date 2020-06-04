@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=1]
+[ext_resource path="res://src/entities/environment/weapon/projectile/arrow/Arrow.gd" type="Script" id=2]
+
+[node name="Arrow" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.146961, 6.53755 )
+rotation = 3.14159
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 368, 384, 16, 16 )

@@ -39,12 +39,14 @@ func _check_guard(task):
 
 func on_child_succeeded(task):
 	.on_child_succeeded(task)
+	success()
 	running_child = null
 	pass
 
 
 func on_child_failed(task):
 	.on_child_failed(task)
+	fail()
 	running_child = null
 	pass
 
@@ -52,6 +54,7 @@ func on_child_failed(task):
 func on_child_running(task):
 	.on_child_running(task)
 	running_child = task
+	running()
 	pass
 
 

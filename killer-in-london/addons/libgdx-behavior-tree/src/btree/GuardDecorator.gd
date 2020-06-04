@@ -9,7 +9,7 @@ func check_condition() -> bool:
 func _handle_not_running_child(child):
 	child.parent_task = self
 	child.start()
-	
+
 	if check_condition():
 		child.run()
 	else:
