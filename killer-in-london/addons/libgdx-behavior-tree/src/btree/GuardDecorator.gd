@@ -14,6 +14,6 @@ func _handle_not_running_child(child):
 		child.run()
 	else:
 #		child.cancel()
-		child.reset()
+#		child.reset()
 		child.fail()
 	pass

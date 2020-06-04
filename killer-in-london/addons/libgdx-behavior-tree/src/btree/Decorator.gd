@@ -12,6 +12,8 @@ func _handle_child():
 	#can be passed into property
 	var child = get_child(0)
 	
+	child.parent_task = self
+	
 	if child.current_status == Status.RUNNING:
 		child.run()
 	else:

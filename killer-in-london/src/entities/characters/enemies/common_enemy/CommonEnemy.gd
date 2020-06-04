@@ -23,3 +23,7 @@ func shoot():
 func melee_attack():
 	print("melee_attack")
 	pass
+
+
+func is_have_ammo() -> bool:
+	return false

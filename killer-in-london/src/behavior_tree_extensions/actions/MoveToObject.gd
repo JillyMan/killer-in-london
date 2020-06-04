@@ -11,7 +11,7 @@ func execute() -> int:
 	
 	host.path_to_follow = get_tree().current_scene.pathfinder.calculate_path(host.global_position, object.global_position)
 	
-	if host.get_distance_to_current_movement_target() < host.destination_radius:
+	if host.global_position.distance_to(object.global_position) < host.destination_radius:
 		host.current_movement_target = null
 		return self.Status.SUCCEEDED
 	

@@ -13,10 +13,14 @@ func _ready():
 
 
 func start():
+	.start()
 	current_child_idx = 0
+	running_child = null
 
 
 func reset():
+	.reset()
+	running_child = null
 	current_child_idx = 0
 
 
@@ -41,4 +45,10 @@ func on_child_succeeded(task):
 func on_child_failed(task):
 	.on_child_failed(task)
 	running_child = null
+	pass
+
+
+func on_child_running(task):
+	running_child = task
+	running()
 	pass

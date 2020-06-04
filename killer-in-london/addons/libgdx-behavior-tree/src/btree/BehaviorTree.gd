@@ -9,9 +9,10 @@ var root_task
 
 
 func _ready():
-	root_task = .get_child(0)
-	set_tree_to_children_recursively(root_task)
-	host = get_node(host_node_path)
+	if not Engine.editor_hint:
+		root_task = .get_child(0)
+		set_tree_to_children_recursively(root_task)
+		host = get_node(host_node_path)
 	pass
 
 
