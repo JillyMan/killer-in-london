@@ -49,7 +49,7 @@
 2/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 14.3705, 9.64964 )
+extents = Vector2( 13.0996, 5.77363 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 7.99491, 237.164 )
@@ -67,7 +67,7 @@ collision_layer = 5
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/KinematicBody2D"]
-position = Vector2( 400.287, 108.328 )
+position = Vector2( 400.619, 103.959 )
 shape = SubResource( 2 )
 
 [node name="Border" type="KinematicBody2D" parent="TileMap"]
@@ -94,6 +94,8 @@ shape = SubResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 243.274, 149.801 )
+collision_layer = 6
+collision_mask = 6
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true

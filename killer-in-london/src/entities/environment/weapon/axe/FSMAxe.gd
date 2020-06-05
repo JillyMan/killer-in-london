@@ -13,7 +13,7 @@ func set_throwing_state(target: Vector2):
 func set_idle_state():
 	set_state(IdleState)
 
-func set_comback_state(owner : KinematicBody2D):
+func set_comback_state(owner : Node2D):
 	set_state(ComebackState, true, { 
 		"come_to": owner,
 	})

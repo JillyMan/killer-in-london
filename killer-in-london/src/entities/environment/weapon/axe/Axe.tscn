@@ -13,12 +13,9 @@ extents = Vector2( 7.24935, 2.69941 )
 [node name="Axe" type="KinematicBody2D"]
 position = Vector2( 0.0897446, 0 )
 rotation = -0.00618112
-collision_layer = 2
-collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 1.29635, -3.07684 )
 rotation = 0.00601894
 shape = SubResource( 1 )
