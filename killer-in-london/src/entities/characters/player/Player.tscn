@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/entities/characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=2]
 [ext_resource path="res://src/entities/environment/weapon/axe/Axe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/entities/characters/player/state/StartMove.gd" type="Script" id=4]
+[ext_resource path="res://src/entities/characters/player/PlayerFSM.gd" type="Script" id=5]
+[ext_resource path="res://src/entities/characters/player/state/Idle.gd" type="Script" id=6]
+[ext_resource path="res://src/entities/characters/player/state/Moving.gd" type="Script" id=7]
+[ext_resource path="res://src/entities/characters/player/state/StartEnd.gd" type="Script" id=8]
+[ext_resource path="res://src/entities/characters/player/state/Dash.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.79388, 2.75777 )
@@ -19,8 +25,7 @@ position = Vector2( 6.72701, -15.5417 )
 
 [node name="Axe" parent="AnimationTransorm/WeaponPosition" instance=ExtResource( 3 )]
 position = Vector2( 3.07733, -5.42314 )
-rotation = 2.18937
-comeback_speed = 2000.0
+rotation = 1.95955
 
 [node name="Sprite" type="Sprite" parent="AnimationTransorm"]
 position = Vector2( 0.309128, -16.204 )
@@ -32,5 +37,25 @@ region_rect = Rect2( 80, 416, 16, 32 )
 position = Vector2( 1.06862, -1.19375 )
 shape = SubResource( 1 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="KdTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource( 5 )
+host_node_path = NodePath("..")
+init_state_node_path = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="FSM"]
+script = ExtResource( 6 )
+
+[node name="Dash" type="Node" parent="FSM"]
+script = ExtResource( 9 )
+
+[node name="StartMove" type="Node" parent="FSM"]
+script = ExtResource( 4 )
+
+[node name="Moving" type="Node" parent="FSM"]
+script = ExtResource( 7 )
+
+[node name="StartEnd" type="Node" parent="FSM"]
+script = ExtResource( 8 )

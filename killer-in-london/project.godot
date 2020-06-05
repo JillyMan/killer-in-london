@@ -149,6 +149,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/libgdx-behavior-tree/src/btree/branch_task/Parallel.gd"
 }, {
+"base": "PlayerBase",
+"class": "Player",
+"language": "GDScript",
+"path": "res://src/entities/characters/player/Player.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "PlayerBase",
+"language": "GDScript",
+"path": "res://src/entities/characters/player/PlayerBase.gd"
+}, {
 "base": "Selector",
 "class": "RandomSelector",
 "language": "GDScript",
@@ -228,6 +238,8 @@ _global_script_class_icons={
 "MoveToObject": "",
 "MoveToPoint": "",
 "Parallel": "res://addons/libgdx-behavior-tree/assets/icons/parallel_icon.png",
+"Player": "",
+"PlayerBase": "",
 "RandomSelector": "res://addons/libgdx-behavior-tree/assets/icons/random_selector_icon.png",
 "RandomSequence": "res://addons/libgdx-behavior-tree/assets/icons/random_sequence_icon.png",
 "Repeater": "res://addons/libgdx-behavior-tree/assets/icons/repeat_icon.png",
