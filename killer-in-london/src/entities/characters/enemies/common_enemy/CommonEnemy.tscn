@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/entities/characters/ai/movable_ai/MovableAI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/characters/enemies/common_enemy/CommonEnemy.gd" type="Script" id=2]
@@ -15,6 +15,9 @@
 [ext_resource path="res://src/behavior_tree_extensions/actions/CommitEnemyLastSeenPosition.gd" type="Script" id=13]
 [ext_resource path="res://addons/libgdx-behavior-tree/src/btree/branch_task/Parallel.gd" type="Script" id=14]
 [ext_resource path="res://src/behavior_tree_extensions/actions/MoveToPoint.gd" type="Script" id=16]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 9.71835, 2.8077 )
 
 [node name="CommonEnemy" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -83,3 +86,6 @@ projectile_packed_scene = ExtResource( 12 )
 
 [node name="Sword" parent="." index="4" instance=ExtResource( 9 )]
 position = Vector2( -3.66259, -11.2319 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+shape = SubResource( 1 )

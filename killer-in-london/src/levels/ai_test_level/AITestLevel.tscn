@@ -21,7 +21,19 @@ destination_radius = 32.0
 mass = 10.0
 enemy_node_path = NodePath("../Player")
 
-[node name="Player" parent="YSort" index="1" instance=ExtResource( 3 )]
-position = Vector2( 243.474, 248.53 )
+[node name="CommonEnemy2" parent="YSort" index="1" instance=ExtResource( 2 )]
+position = Vector2( 123.255, 134.647 )
+max_speed = 350.0
+slowing_radius = 16.0
+destination_radius = 32.0
+mass = 10.0
+enemy_node_path = NodePath("../Player")
 
-[node name="Projectiles" type="Node" parent="YSort" index="2"]
+[node name="Player" parent="YSort" index="2" instance=ExtResource( 3 )]
+position = Vector2( 176.668, 169.748 )
+collision_mask = 0
+
+[node name="Camera2D" type="Camera2D" parent="YSort/Player" index="2"]
+current = true
+
+[node name="Projectiles" type="YSort" parent="YSort" index="3"]
