@@ -4,11 +4,12 @@ extends PlayerBase
 onready var axe = $AnimationTransorm/WeaponPosition/Axe
 onready var start_transform = axe.transform
 onready var weapon_position = $AnimationTransorm/WeaponPosition
+
+export var throw_kd : float = 0
 onready var kd_timer = $KdTimer
 
 var with_axe : bool = true
 var is_coming_axe : bool = false
-var kd_is_over : bool = true
 
 func _ready():
 	axe.connect("on_weapon_returned", self, "_on_weapon_returned")
@@ -46,6 +47,7 @@ func _on_weapon_returned():
 	_attach_weapon(axe)
 	with_axe = true
 	is_coming_axe = false
+	print(throw_kd)
 	kd_timer.start(throw_kd)
 	pass
 
@@ -74,6 +76,10 @@ func _update_animation():
 
 func _process(delta):
 	update_move_dir()
+	
+	if Input.is_action_just_pressed("player_dash"):
+		$FSM.set_dash_state(get_current_dir().normalized())
+	
 	$FSM.handle_process(delta)
 	$FSM.handle_physic_process(delta)
 	_check_mouse()

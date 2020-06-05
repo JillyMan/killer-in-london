@@ -2,9 +2,8 @@ class_name PlayerBase
 extends KinematicBody2D
 
 export var speed: float = 100.0
-export var throw_kd : float = 1
-export var dash_speed : float = 50.0
-export var dash_time_sec : float = 1
+export var dash_speed : float = 350.0
+export var dash_time_sec : float = 0.25
 
 var current_dir : Vector2
 var is_move : bool = false
@@ -12,6 +11,7 @@ var is_move : bool = false
 func has_dir() -> bool:
 	return is_move
 
+# get_move_dir
 func get_current_dir() -> Vector2:
 	return current_dir
 
