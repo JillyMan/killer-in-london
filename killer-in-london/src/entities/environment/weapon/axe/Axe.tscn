@@ -14,6 +14,7 @@ extents = Vector2( 7.24935, 2.69941 )
 position = Vector2( 0.0897446, 0 )
 rotation = -0.00618112
 script = ExtResource( 2 )
+max_throw_distance = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.29635, -3.07684 )

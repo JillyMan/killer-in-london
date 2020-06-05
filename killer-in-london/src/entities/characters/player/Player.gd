@@ -2,13 +2,16 @@ extends KinematicBody2D
 
 export var speed: float = 100.0
 export var dash_speed: float = 50.0
+export var throw_kd : float = 1
 
 onready var axe = $AnimationTransorm/WeaponPosition/Axe
 onready var start_transform = axe.transform
 onready var weapon_position = $AnimationTransorm/WeaponPosition
+onready var timer = $Timer
 
 var with_axe : bool = true
 var is_coming_axe : bool = false
+var kd_is_over : bool = true
 
 func _ready():
 	axe.connect("on_weapon_returned", self, "_on_weapon_returned")
@@ -44,8 +47,9 @@ func _on_try_return_weapon_failed():
 func _on_weapon_returned():
 	assert(not with_axe and is_coming_axe)
 	_attach_weapon(axe)
-	is_coming_axe = false
 	with_axe = true
+	is_coming_axe = false
+	timer.start(throw_kd)
 	pass
 
 func _check_mouse(delta):
@@ -55,9 +59,11 @@ func _check_mouse(delta):
 		if Input.is_action_just_released("mouse_attack"):
 			axe.rotate(-PI/2)
 
+	print(timer.time_left)
 	if Input.is_action_just_pressed("mouse_throw_weapon"):
 		if with_axe:
-			_throw_weapon(get_global_mouse_position())
+			if timer.time_left == 0:
+				_throw_weapon(get_global_mouse_position())
 		elif not is_coming_axe:
 			_return_weapon()
 	pass

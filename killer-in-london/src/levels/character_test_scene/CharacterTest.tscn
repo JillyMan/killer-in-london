@@ -96,6 +96,7 @@ shape = SubResource( 3 )
 position = Vector2( 243.274, 149.801 )
 collision_layer = 6
 collision_mask = 6
+throw_kd = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true

@@ -20,6 +20,7 @@ position = Vector2( 6.72701, -15.5417 )
 [node name="Axe" parent="AnimationTransorm/WeaponPosition" instance=ExtResource( 3 )]
 position = Vector2( 3.07733, -5.42314 )
 rotation = 2.18937
+comeback_speed = 2000.0
 
 [node name="Sprite" type="Sprite" parent="AnimationTransorm"]
 position = Vector2( 0.309128, -16.204 )
@@ -30,3 +31,6 @@ region_rect = Rect2( 80, 416, 16, 32 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.06862, -1.19375 )
 shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
