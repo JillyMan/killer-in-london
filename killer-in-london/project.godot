@@ -194,11 +194,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/libgdx-behavior-tree/src/btree/SingleRunningChildBranchTask.gd"
 }, {
-"base": "State",
-"class": "SmoothMove",
-"language": "GDScript",
-"path": "res://src/entities/characters/player/state/SmoothMove.gd"
-}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -257,7 +252,6 @@ _global_script_class_icons={
 "Selector": "res://addons/libgdx-behavior-tree/assets/icons/selector_icon.png",
 "Sequence": "res://addons/libgdx-behavior-tree/assets/icons/sequence_icon.png",
 "SingleRunningChildBranchTask": "",
-"SmoothMove": "",
 "State": "",
 "Success": "res://addons/libgdx-behavior-tree/assets/icons/succeeder_icon.png",
 "Task": "",
