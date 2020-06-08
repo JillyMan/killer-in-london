@@ -56,46 +56,48 @@ extents = Vector2( 7.99491, 237.164 )
 
 [node name="CharacterTest" type="Node2D"]
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="YSort" type="YSort" parent="."]
+
+[node name="TileMap" type="TileMap" parent="YSort"]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65552, 1, 0, 65553, 1, 0, 65554, 1, 0, 65555, 1, 0, 65556, 1, 0, 65557, 1, 0, 65558, 1, 0, 65559, 1, 0, 65560, 1, 0, 65561, 1, 0, 65562, 1, 0, 65563, 1, 0, 65564, 1, 0, 65565, 1, 0, 65566, 1, 0, 131073, 0, 0, 131102, 1, 0, 196609, 0, 0, 196638, 1, 0, 262145, 0, 0, 262174, 1, 0, 327681, 0, 0, 327704, 2, 0, 327710, 1, 0, 393217, 0, 0, 393246, 1, 0, 458753, 0, 0, 458782, 1, 0, 524289, 0, 0, 524318, 1, 0, 589825, 0, 0, 589854, 1, 0, 655361, 0, 0, 655390, 1, 0, 720897, 0, 0, 720926, 1, 0, 786433, 0, 0, 786462, 1, 0, 851969, 0, 0, 851998, 1, 0, 917505, 0, 0, 917534, 1, 0, 983041, 0, 0, 983070, 1, 0, 1048577, 1, 0, 1048578, 1, 0, 1048579, 1, 0, 1048580, 1, 0, 1048581, 1, 0, 1048582, 1, 0, 1048583, 1, 0, 1048584, 1, 0, 1048585, 1, 0, 1048586, 1, 0, 1048587, 1, 0, 1048588, 1, 0, 1048589, 1, 0, 1048590, 1, 0, 1048591, 1, 0, 1048592, 1, 0, 1048593, 1, 0, 1048594, 1, 0, 1048595, 1, 0, 1048596, 1, 0, 1048597, 1, 0, 1048598, 1, 0, 1048599, 1, 0, 1048600, 1, 0, 1048601, 1, 0, 1048602, 1, 0, 1048603, 1, 0, 1048604, 1, 0, 1048605, 1, 0, 1048606, 1, 0 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="TileMap"]
+[node name="KinematicBody2D" type="KinematicBody2D" parent="YSort/TileMap"]
 collision_layer = 5
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/TileMap/KinematicBody2D"]
 position = Vector2( 400.619, 103.959 )
 shape = SubResource( 2 )
 
-[node name="Border" type="KinematicBody2D" parent="TileMap"]
+[node name="Border" type="KinematicBody2D" parent="YSort/TileMap"]
 collision_layer = 5
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Border"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/TileMap/Border"]
 position = Vector2( 23.8349, 142.832 )
 shape = SubResource( 3 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="TileMap/Border"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="YSort/TileMap/Border"]
 position = Vector2( 257.727, 23.2273 )
 rotation = 1.57301
 shape = SubResource( 3 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="TileMap/Border"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="YSort/TileMap/Border"]
 position = Vector2( 487.923, 157.565 )
 shape = SubResource( 3 )
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="TileMap/Border"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="YSort/TileMap/Border"]
 position = Vector2( 255.856, 263.309 )
 rotation = 1.56673
 shape = SubResource( 3 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
 position = Vector2( 243.274, 149.801 )
 collision_layer = 6
 collision_mask = 6
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="YSort/Player"]
 current = true

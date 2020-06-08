@@ -1,3 +1,4 @@
+class_name SmoothMove
 extends State
 
 var player : PlayerBase
@@ -8,21 +9,6 @@ var end_speed : float
 var current_speed : float
 
 var move_dir : Vector2
-
-func fixed_tick(delta) -> void:
-	move_dir = player.get_current_dir()
-	if (move_dir == Vector2.ZERO):
-		player_fsm.set_idle_state()
-
-	var vel = move_dir * current_speed
-
-	player.move_and_slide(vel)
-	current_speed += step 
-
-	if end_speed - current_speed < 0.1:
-		player_fsm.set_moving_state()
-
-	return
 
 func enter(payload):
 	player = host as PlayerBase

@@ -10,7 +10,7 @@ func fixed_tick(delta):
 	time_accum += delta
 	player.move_and_slide(move_dir * player.dash_speed)
 	if (time_accum > dash_max_time_):
-		fsm.set_idle_state()
+		fsm.set_moving_state()
 	pass
 
 func enter(payload):

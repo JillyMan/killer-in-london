@@ -1,7 +1,7 @@
 class_name PlayerBase
 extends KinematicBody2D
 
-export var speed: float = 100.0
+export var speed: float = 150.0
 export var dash_speed : float = 350.0
 export var dash_time_sec : float = 0.25
 
