@@ -15,6 +15,8 @@ allow_diagonal_connection = true
 
 [node name="CommonEnemy" parent="YSort" index="0" instance=ExtResource( 2 )]
 position = Vector2( 7.91913, 7.33611 )
+collision_layer = 4
+collision_mask = 3
 max_speed = 350.0
 slowing_radius = 16.0
 destination_radius = 32.0
@@ -23,6 +25,8 @@ enemy_node_path = NodePath("../Player")
 
 [node name="CommonEnemy2" parent="YSort" index="1" instance=ExtResource( 2 )]
 position = Vector2( 123.255, 134.647 )
+collision_layer = 4
+collision_mask = 3
 max_speed = 350.0
 slowing_radius = 16.0
 destination_radius = 32.0
@@ -31,7 +35,8 @@ enemy_node_path = NodePath("../Player")
 
 [node name="Player" parent="YSort" index="2" instance=ExtResource( 3 )]
 position = Vector2( 176.668, 169.748 )
-collision_mask = 0
+collision_mask = 1
+throw_kd = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="YSort/Player" index="2"]
 current = true

@@ -30,6 +30,7 @@ region_rect = Rect2( 48, 416, 16, 32 )
 
 [node name="SignRayCast" type="RayCast2D" parent="." index="1"]
 enabled = true
+collision_mask = 3
 
 [node name="BehaviorTree" type="Node" parent="." index="2"]
 script = ExtResource( 4 )
