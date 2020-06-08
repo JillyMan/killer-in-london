@@ -20,7 +20,6 @@ position = Vector2( 6.72701, -15.5417 )
 [node name="Axe" parent="AnimationTransorm/WeaponPosition" instance=ExtResource( 3 )]
 position = Vector2( 3.07733, -5.42314 )
 rotation = 2.18937
-comeback_speed = 2000.0
 
 [node name="Sprite" type="Sprite" parent="AnimationTransorm"]
 position = Vector2( 0.309128, -16.204 )

@@ -333,14 +333,15 @@ tile_data = PoolIntArray( -786453, 21, 0, -786451, 21, 0, -720921, 36, 0, -65537
 [node name="TileMap2" type="TileMap" parent="YSort"]
 tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
+cell_tile_origin = 2
 format = 1
-tile_data = PoolIntArray( -917524, 6, 0, -851988, 6, 0, -786452, 6, 0, -786447, 11, 0, -786445, 11, 0, -720921, 15, 0, -720917, 3, 0, -720910, 14, 0, -655381, 0, 0, -393234, 7, 0, -393233, 15, 0, -393229, 7, 0, -327701, -1610612720, 0, -196629, 8, 0, -196627, 1610612740, 0, -196626, 1610612740, 0, -196624, 1610612740, 0, -196623, 1610612740, 0, -131085, 15, 0, -65549, 13, 0 )
-
-[node name="Node2D" parent="YSort" instance=ExtResource( 7 )]
-position = Vector2( -336.001, -20.8746 )
+tile_data = PoolIntArray( -917524, 6, 0, -851988, 6, 0, -851974, 0, 0, -786452, 6, 0, -786447, 11, 0, -786445, 11, 0, -786438, 0, 0, -720921, 15, 0, -720917, 3, 0, -720910, 14, 0, -720902, 0, 0, -655381, 0, 0, -655366, 0, 0, -393234, 7, 0, -393233, 15, 0, -393229, 7, 0, -327701, -1610612720, 0, -196629, 8, 0, -196627, 1610612740, 0, -196626, 1610612740, 0, -196624, 1610612740, 0, -196623, 1610612740, 0, -131085, 15, 0, -65549, 13, 0 )
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( -363.925, 6.67226 )
+position = Vector2( -383.678, -40.3253 )
 
 [node name="Camera2D" type="Camera2D" parent="YSort/Player"]
 current = true
+
+[node name="Node2D" parent="YSort" instance=ExtResource( 7 )]
+position = Vector2( -336.001, -20.8746 )
