@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/medieval_tileset_exterior.png" type="Texture" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.299774, 23.9825 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 112, 128, 48 )
