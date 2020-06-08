@@ -17,5 +17,5 @@ func enter(payload):
 	player = host
 	time_accum = 0
 	dash_max_time_ = player.dash_time_sec
-	move_dir = payload.move_dir
+	move_dir = player.get_move_dir()
 	pass

@@ -58,6 +58,14 @@ extents = Vector2( 7.99491, 237.164 )
 
 [node name="YSort" type="YSort" parent="."]
 
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 243.274, 149.801 )
+collision_layer = 6
+collision_mask = 6
+
+[node name="Camera2D" type="Camera2D" parent="YSort/Player"]
+current = true
+
 [node name="TileMap" type="TileMap" parent="YSort"]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
@@ -93,11 +101,3 @@ shape = SubResource( 3 )
 position = Vector2( 255.856, 263.309 )
 rotation = 1.56673
 shape = SubResource( 3 )
-
-[node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 243.274, 149.801 )
-collision_layer = 6
-collision_mask = 6
-
-[node name="Camera2D" type="Camera2D" parent="YSort/Player"]
-current = true

@@ -1,18 +1,15 @@
 class_name PlayerBase
 extends KinematicBody2D
 
-export var speed: float = 150.0
+export var speed: float = 30.0
+export (float, 0.0, 1.0) var friction : float = 0.1
+
 export var dash_speed : float = 350.0
 export var dash_time_sec : float = 0.25
 
 var current_dir : Vector2
-var is_move : bool = false
 
-func has_dir() -> bool:
-	return is_move
-
-# get_move_dir
-func get_current_dir() -> Vector2:
+func get_move_dir() -> Vector2:
 	return current_dir
 
 func update_move_dir():
@@ -26,4 +23,4 @@ func update_move_dir():
 	if Input.is_action_pressed("player_move_right"):
 		current_dir.x = 1
 
-	is_move = current_dir != Vector2.ZERO
+	current_dir = current_dir.normalized()
