@@ -3,15 +3,15 @@
 [ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 4.98918
+radius = 15.17
 
-[node name="StaticBody2D6" type="StaticBody2D"]
+[node name="StaticBody2D13" type="StaticBody2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 212, 250, 9, 22 )
+region_rect = Rect2( 384, 304, 32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.507436, 7.81454 )
+position = Vector2( -0.994402, 3.18209 )
 shape = SubResource( 1 )
