@@ -6,6 +6,8 @@ export var comeback_speed : float = 2000
 
 export var max_throw_distance : float = 100
 
+onready var damage_producer_shape : CollisionShape2D = $DamageProducer/CollisionShape2D2
+
 signal on_weapon_returned
 signal on_return_failed
 
