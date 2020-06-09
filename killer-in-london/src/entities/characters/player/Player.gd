@@ -7,6 +7,7 @@ onready var kd_timer = $KdTimer
 onready var weapon_position = $AnimationTransorm/WeaponPosition
 onready var axe = $AnimationTransorm/WeaponPosition/Axe
 onready var start_transform = axe.transform
+onready var animation_player = $AnimationTransorm/AnimationPlayer
 
 var with_axe : bool = true
 var is_coming_axe : bool = false
