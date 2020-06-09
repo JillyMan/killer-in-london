@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/entities/characters/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=2]
 [ext_resource path="res://assets/medieval_tileset_exterior.png" type="Texture" id=3]
+[ext_resource path="res://src/libs/damage_system/HitBox.gd" type="Script" id=4]
+[ext_resource path="res://src/libs/damage_system/HealthPoints.gd" type="Script" id=5]
+[ext_resource path="res://src/levels/character_test_scene/Node2D.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=5]
 
 [sub_resource type="TileSet" id=1]
 0/name = "dungeon_tileset_calciumtrice.png 0"
@@ -49,12 +54,31 @@
 2/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 13.0996, 5.77363 )
+extents = Vector2( 10.0435, 5.77363 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 7.99491, 237.164 )
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8.70538, 20.1491 )
+
 [node name="CharacterTest" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 243.274, 149.801 )
+collision_layer = 7
+collision_mask = 7
+speed = 30.0
+friction = 0.2
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
+position = Vector2( 2.15149, -14.1384 )
+shape = SubResource( 5 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -67,7 +91,7 @@ collision_layer = 5
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/KinematicBody2D"]
-position = Vector2( 400.619, 103.959 )
+position = Vector2( 400.241, 103.375 )
 shape = SubResource( 2 )
 
 [node name="Border" type="KinematicBody2D" parent="TileMap"]
@@ -92,11 +116,26 @@ position = Vector2( 255.856, 263.309 )
 rotation = 1.56673
 shape = SubResource( 3 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 243.274, 149.801 )
-collision_layer = 6
-collision_mask = 6
-throw_kd = 1.0
+[node name="Enemy" type="Node2D" parent="."]
+script = ExtResource( 6 )
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-current = true
+[node name="ColorRect" type="ColorRect" parent="Enemy"]
+margin_left = 374.321
+margin_top = 156.22
+margin_right = 391.321
+margin_bottom = 196.22
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HitBox" type="Area2D" parent="Enemy"]
+script = ExtResource( 4 )
+health_points_node_path = NodePath("../../Enemy/HealthPoints")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/HitBox"]
+position = Vector2( 382.395, 175.892 )
+shape = SubResource( 4 )
+
+[node name="HealthPoints" type="Node" parent="Enemy"]
+script = ExtResource( 5 )
+subject_node_path = NodePath("../../Enemy")
