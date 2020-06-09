@@ -1,7 +1,7 @@
 class_name DamageProducer
 extends Area2D
 
-enum DAMAGE_TYPE {lava, bulllet, lazer, punch}
+enum DAMAGE_TYPE {lava, bulllet, lazer, punch, arrow, sword}
 
 signal damage_produced
 

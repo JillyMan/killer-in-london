@@ -12,6 +12,7 @@ func _process(delta):
 		return
 	
 	update()
+	pass
 
 
 func _draw():

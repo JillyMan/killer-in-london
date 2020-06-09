@@ -11,7 +11,7 @@ export var wander_force : float
 onready var obstacle_checker : RayCast2D = $ObstacleChecker
 
 var _wander_angle : float
-var _velocity : Vector2
+var _velocity : Vector2 setget , get_velocity
 var _steering : Vector2
 
 var _path_to_follow : Array setget set_path_to_follow
@@ -21,25 +21,27 @@ var _current_path_index := 0
 func _ready():
 	randomize()
 
-
-func _physics_process(delta):
+func _process(delta):
 	_steering = Vector2.ZERO
 	_apply_behavior()
-	_apply_steering(delta)
+	_steering = _steering.clamped(max_velocity) * (1.0 / mass)
+	pass
+
+func _physics_process(delta):
+#	print(_steering)
+	_apply_steering()
 
 
 func _apply_behavior():
 	pass
 
 
-func _apply_steering(delta):
-	_steering = _steering.clamped(max_velocity) * (1.0 / mass)
-	
+func _apply_steering():
 	_velocity += _steering
 	_velocity = _velocity.clamped(max_velocity)
 	move_and_slide(_velocity)
 #	_velocity = move_and_slide(_velocity)
-#	_velocity = _velocity.linear_interpolate(Vector2.ZERO, 0.1)
+	_velocity = _velocity.linear_interpolate(Vector2.ZERO, 0.1)
 	pass
 
 
@@ -49,7 +51,7 @@ func set_path_to_follow(value):
 
 
 func follow_path():
-	if not _path_to_follow:
+	if not _path_to_follow or _path_to_follow.size() == 1:
 		return Vector2.ZERO
 	 
 	var current_target = _path_to_follow[_current_path_index]
@@ -66,6 +68,10 @@ func follow_path():
 	return raw_seek(current_target) if not is_last_point else seek(current_target)
 
 
+func is_achieve_end_of_path() -> bool:
+	return _current_path_index == _path_to_follow.size() - 1
+
+
 func flee(target : Vector2):
 	var desired : = (global_position - target)
 	return desired * max_velocity
@@ -75,17 +81,22 @@ func evade(steerable):
 	var to_steerable : Vector2 = (steerable.global_position - global_position)
 	var t = to_steerable.length() / max_velocity
 	
-	var future_position = steerable.global_position + steerable._velocity * t
+	var future_position = steerable.global_position + steerable.get_velocity() * t
 
 	return flee(future_position)
 
 
 func pursuit(steerable):
-	var to_steerable : Vector2 = (steerable.global_position - global_position)
-	var t = to_steerable.length() / max_velocity
+	var target_future_position
 	
-	var target_future_position = steerable.global_position + steerable._velocity * t
-	
+	if _velocity.dot(steerable.get_velocity()) > 0:
+		var to_steerable : Vector2 = (steerable.global_position - global_position)
+		var t = to_steerable.length() / max_velocity
+		
+		target_future_position = steerable.global_position + steerable.get_velocity() * t
+	else:
+		target_future_position = steerable.global_position
+		
 	return seek(target_future_position)
 
 
@@ -175,3 +186,7 @@ func modern_collision_avoidance():
 	
 	var w = obstacle_checker.get_collision_normal()
 	return (_velocity.dot(w) * w)
+
+
+func get_velocity():
+	return _velocity

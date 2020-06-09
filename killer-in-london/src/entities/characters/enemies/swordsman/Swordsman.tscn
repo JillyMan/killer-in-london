@@ -1,0 +1,114 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=1]
+[ext_resource path="res://src/libs/steering_behaviors/steered_actor/SteeredActor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/entities/characters/enemies/swordsman/Swordsman.gd" type="Script" id=3]
+[ext_resource path="res://src/entities/characters/enemies/swordsman/attack_states/FSM.gd" type="Script" id=4]
+[ext_resource path="res://src/entities/characters/enemies/swordsman/attack_states/Attack.gd" type="Script" id=5]
+[ext_resource path="res://src/entities/characters/enemies/swordsman/attack_states/None.gd" type="Script" id=6]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/BehaviorTree.gd" type="Script" id=7]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/branch_task/DynamicGuardSelector.gd" type="Script" id=8]
+[ext_resource path="res://src/behavior_tree_extensions/guards/IsObjectInSignGuard.gd" type="Script" id=9]
+[ext_resource path="res://src/behavior_tree_extensions/actions/steering/PursueTarget.gd" type="Script" id=10]
+[ext_resource path="res://src/behavior_tree_extensions/actions/IsObjectClose.gd" type="Script" id=11]
+[ext_resource path="res://src/behavior_tree_extensions/actions/Attack.gd" type="Script" id=12]
+[ext_resource path="res://src/behavior_tree_extensions/actions/steering/Wander.gd" type="Script" id=13]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/branch_task/Parallel.gd" type="Script" id=14]
+[ext_resource path="res://src/behavior_tree_extensions/actions/CommitEnemyLastSeenPosition.gd" type="Script" id=15]
+[ext_resource path="res://src/behavior_tree_extensions/actions/steering/FollowPathToPoint.gd" type="Script" id=16]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/branch_task/Sequence.gd" type="Script" id=17]
+[ext_resource path="res://src/libs/damage_system/DamageProducer.gd" type="Script" id=18]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.85842, 3.1473 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10.2416, 10 )
+
+[node name="Swordsman" instance=ExtResource( 2 )]
+collision_layer = 4
+script = ExtResource( 3 )
+
+[node name="SignRayCast" type="RayCast2D" parent="." index="1"]
+enabled = true
+collision_mask = 3
+
+[node name="Body" type="Position2D" parent="." index="2"]
+
+[node name="Sprite" type="Sprite" parent="Body" index="0"]
+position = Vector2( -0.695892, -15.8896 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 16, 416, 16, 32 )
+
+[node name="AttackFSM" type="Node" parent="." index="3"]
+script = ExtResource( 4 )
+host_node_path = NodePath("..")
+init_state_node_path = NodePath("None")
+
+[node name="Attack" type="Node" parent="AttackFSM" index="0"]
+script = ExtResource( 5 )
+
+[node name="Tween" type="Tween" parent="AttackFSM/Attack" index="0"]
+
+[node name="None" type="Node" parent="AttackFSM" index="1"]
+script = ExtResource( 6 )
+
+[node name="BehaviorTree" type="Node" parent="." index="4"]
+script = ExtResource( 7 )
+host_node_path = NodePath("..")
+
+[node name="DynamicGuardSelector" type="Node" parent="BehaviorTree" index="0"]
+script = ExtResource( 8 )
+
+[node name="IsObjectInSign" type="Node" parent="BehaviorTree/DynamicGuardSelector" index="0"]
+script = ExtResource( 9 )
+object_property_name = "enemy"
+
+[node name="DynamicGuardSelector" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign" index="0"]
+script = ExtResource( 8 )
+
+[node name="IsObjectClose" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign/DynamicGuardSelector" index="0"]
+script = ExtResource( 11 )
+distance = 32.0
+object_field_name = "enemy"
+
+[node name="Attack" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign/DynamicGuardSelector/IsObjectClose" index="0"]
+script = ExtResource( 12 )
+target_field_name = "enemy"
+
+[node name="Parallel" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign/DynamicGuardSelector" index="1"]
+script = ExtResource( 14 )
+
+[node name="CommitEnemyLastSeenPosition" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign/DynamicGuardSelector/Parallel" index="0"]
+script = ExtResource( 15 )
+
+[node name="PursueTarget" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign/DynamicGuardSelector/Parallel" index="1"]
+script = ExtResource( 10 )
+target_field_name = "enemy"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/DynamicGuardSelector" index="1"]
+script = ExtResource( 17 )
+
+[node name="FollowPathToPoint" type="Node" parent="BehaviorTree/DynamicGuardSelector/Sequence" index="0"]
+script = ExtResource( 16 )
+point_field_name = "enemy_last_seen_position"
+
+[node name="Wander" type="Node" parent="BehaviorTree/DynamicGuardSelector/Sequence" index="1"]
+script = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+position = Vector2( 0.0769463, 1.90735e-06 )
+shape = SubResource( 1 )
+
+[node name="DamageProducer" type="Area2D" parent="." index="6"]
+position = Vector2( 0.255774, -5.627 )
+collision_layer = 4
+collision_mask = 2
+script = ExtResource( 18 )
+damage_type = 5
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DamageProducer" index="0"]
+shape = SubResource( 2 )
+disabled = true
+[connection signal="tween_all_completed" from="AttackFSM/Attack/Tween" to="AttackFSM/Attack" method="_on_Tween_tween_all_completed"]

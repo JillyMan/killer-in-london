@@ -14,6 +14,9 @@ func _ready():
 
 
 func on_damage_producer_enter(damage_producer : DamageProducer):
+	if not damage_producer is DamageProducer:
+		return
+	
 	if damage_producer.initiator == owner:
 		return
 	
