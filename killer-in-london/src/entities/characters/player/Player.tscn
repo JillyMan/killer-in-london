@@ -1,39 +1,219 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://src/entities/characters/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=2]
+[ext_resource path="res://assets/cleric spritesheet calciumtrice.png" type="Texture" id=2]
 [ext_resource path="res://src/entities/environment/weapon/axe/Axe.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/entities/characters/player/PlayerFSM.gd" type="Script" id=5]
 [ext_resource path="res://src/entities/characters/player/state/Moving.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/characters/player/state/Dash.gd" type="Script" id=9]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="Animation" id=1]
+resource_name = "player_idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "player_idle" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("WeaponPosition:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 6.50663, -12.8358 ), Vector2( 6.20893, -12.9549 ), Vector2( 5.43492, -12.3595 ), Vector2( 6.32801, -12.6572 ), Vector2( 6.38755, -12.7763 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "player_walk"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("WeaponPosition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 7.23856, -14.007 ), Vector2( 7.34066, -14.8238 ), Vector2( 6.06447, -13.3945 ), Vector2( 6.16657, -12.6798 ), Vector2( 6.26866, -12.4246 ), Vector2( 6.83018, -12.4246 ), Vector2( 7.13647, -13.7008 ), Vector2( 6.5239, -13.5476 ), Vector2( 6.31971, -13.4455 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "player_walk" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 9 ]
+}
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 2 )
+region = Rect2( 160, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 2 )
+region = Rect2( 224, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 2 )
+region = Rect2( 256, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 2 )
+region = Rect2( 288, 64, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 2 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 2 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 2 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 2 )
+region = Rect2( 224, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 2 )
+region = Rect2( 256, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 2 )
+region = Rect2( 288, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=23]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "player_walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"loop": true,
+"name": "player_idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 7.79388, 2.75777 )
 
 [node name="Player" type="KinematicBody2D"]
+position = Vector2( -0.255775, -2.30198 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 1 )
-friction = 0.1
+speed = 20.0
+friction = 0.3
 
 [node name="AnimationTransorm" type="Position2D" parent="."]
+position = Vector2( 0.29105, 2.3284 )
 
 [node name="WeaponPosition" type="Position2D" parent="AnimationTransorm"]
-position = Vector2( 6.72701, -15.5417 )
+position = Vector2( 6.5239, -13.5476 )
 
 [node name="Axe" parent="AnimationTransorm/WeaponPosition" instance=ExtResource( 3 )]
-position = Vector2( 3.07733, -5.42314 )
+position = Vector2( 1.39782, -6.42602 )
 rotation = 1.95955
 
-[node name="Sprite" type="Sprite" parent="AnimationTransorm"]
-position = Vector2( 0.309128, -16.204 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 80, 416, 16, 32 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTransorm"]
+anims/player_idle = SubResource( 1 )
+anims/player_walk = SubResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="AnimationTransorm"]
+position = Vector2( 0.220367, -16.1971 )
+frames = SubResource( 23 )
+animation = "player_walk"
+frame = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.06862, -1.19375 )
-shape = SubResource( 1 )
+position = Vector2( 0.471811, -0.511682 )
+shape = SubResource( 24 )
 
 [node name="KdTimer" type="Timer" parent="."]
 one_shot = true
