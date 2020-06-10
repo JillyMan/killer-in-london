@@ -11,5 +11,11 @@ func _apply_behavior():
 
 func attack(direction):
 	bow.rotation = direction.angle()
-	bow.use(direction)
+	bow.use(self, direction)
+	pass
+
+
+func death():
+	$BloodEffect.restart()
+	$BloodEffect.emitting = true
 	pass

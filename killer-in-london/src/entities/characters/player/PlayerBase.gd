@@ -24,3 +24,7 @@ func update_move_dir():
 		current_dir.x = 1
 
 	current_dir = current_dir.normalized()
+
+
+func get_velocity():
+	return get_move_dir() * speed

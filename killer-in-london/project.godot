@@ -164,11 +164,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/libgdx-behavior-tree/src/btree/branch_task/Parallel.gd"
 }, {
-"base": "LeafTask",
-"class": "PursueTarget",
-"language": "GDScript",
-"path": "res://src/behavior_tree_extensions/actions/steering/PursueTarget.gd"
-}, {
 "base": "PlayerBase",
 "class": "Player",
 "language": "GDScript",
@@ -183,6 +178,11 @@ _global_script_classes=[ {
 "class": "PlayerFSM",
 "language": "GDScript",
 "path": "res://src/entities/characters/player/PlayerFSM.gd"
+}, {
+"base": "LeafTask",
+"class": "PursueTarget",
+"language": "GDScript",
+"path": "res://src/behavior_tree_extensions/actions/steering/PursueTarget.gd"
 }, {
 "base": "Selector",
 "class": "RandomSelector",
@@ -276,10 +276,10 @@ _global_script_class_icons={
 "MoveToObject": "",
 "MoveToPoint": "",
 "Parallel": "res://addons/libgdx-behavior-tree/assets/icons/parallel_icon.png",
-"PursueTarget": "",
 "Player": "",
 "PlayerBase": "",
 "PlayerFSM": "",
+"PursueTarget": "",
 "RandomSelector": "res://addons/libgdx-behavior-tree/assets/icons/random_selector_icon.png",
 "RandomSequence": "res://addons/libgdx-behavior-tree/assets/icons/random_sequence_icon.png",
 "Repeater": "res://addons/libgdx-behavior-tree/assets/icons/repeat_icon.png",

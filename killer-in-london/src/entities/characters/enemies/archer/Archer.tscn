@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/entities/characters/enemies/base_enemy/BaseEnemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/entities/characters/enemies/archer/Archer.gd" type="Script" id=2]
@@ -16,9 +16,13 @@
 [ext_resource path="res://src/behavior_tree_extensions/actions/IsObjectClose.gd" type="Script" id=14]
 [ext_resource path="res://src/behavior_tree_extensions/actions/steering/Evade.gd" type="Script" id=15]
 [ext_resource path="res://src/entities/environment/weapon/projectile/arrow/Arrow.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/particles/BloodEmitting.tres" type="Material" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8.328, 2.7424 )
+extents = Vector2( 6.73402, 2.7424 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9.1887, 12.2408 )
 
 [node name="Archer" instance=ExtResource( 1 )]
 collision_layer = 4
@@ -82,3 +86,19 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
 shape = SubResource( 1 )
+
+[node name="HitBox" parent="." index="6"]
+position = Vector2( 0.122086, -7.56937 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource( 2 )
+
+[node name="BloodEffect" type="Particles2D" parent="." index="8"]
+position = Vector2( 1.84464, -28.8846 )
+emitting = false
+amount = 32
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = ExtResource( 17 )

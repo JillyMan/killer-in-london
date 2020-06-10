@@ -5,7 +5,7 @@ export var attack_time := 1.0
 
 onready var attack_fsm = $AttackFSM
 onready var body = $Body
-onready var damage_producer_shape = $CollisionShape2D
+onready var damage_producer_shape = $Body/DamageProducer/CollisionShape2D2
 
 
 func _process(delta):
@@ -21,3 +21,8 @@ func attack(direction):
 	attack_fsm.set_state($AttackFSM/Attack, false, {"target_position":target_position})
 	pass
 
+
+func death():
+	$BloodEffect.restart()
+	$BloodEffect.emitting = true
+	pass

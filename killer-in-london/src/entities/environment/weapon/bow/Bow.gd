@@ -6,7 +6,7 @@ export var projectile_packed_scene : PackedScene
 onready var timer = $Timer
 
 
-func use(direction):
+func use(emitter, direction):
 	if timer.time_left > 0:
 		return
 	
@@ -17,5 +17,5 @@ func use(direction):
 	projectile_instance.direction = direction
 	projectiles.add_child(projectile_instance)
 	
-	projectile_instance.global_position = global_position
+	projectile_instance.global_position = emitter.global_position
 	pass

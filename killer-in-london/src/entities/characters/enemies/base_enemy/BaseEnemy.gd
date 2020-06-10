@@ -11,3 +11,8 @@ onready var sign_ray_cast = $SignRayCast
 
 func attack(direction):
 	pass
+
+
+func death():
+	print("dead")
+	pass
