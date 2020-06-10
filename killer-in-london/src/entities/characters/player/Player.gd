@@ -53,8 +53,9 @@ func _on_weapon_returned():
 	_attach_weapon(axe)
 	with_axe = true
 	is_coming_axe = false
-	print(throw_kd)
-	kd_timer.start(throw_kd)
+
+	if throw_kd > 0:
+		kd_timer.start(throw_kd)
 	pass
 
 func _check_mouse():
