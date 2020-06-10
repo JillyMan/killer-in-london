@@ -224,6 +224,7 @@ texture = ExtResource( 4 )
 position = Vector2( 7.23856, -14.007 )
 
 [node name="Axe" parent="AnimationTransorm/WeaponPosition" instance=ExtResource( 3 )]
+
 position = Vector2( 1.39782, -6.42602 )
 rotation = 1.95955
 

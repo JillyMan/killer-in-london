@@ -17,6 +17,9 @@ func on_damage_producer_enter(damage_producer : DamageProducer):
 	
 	if damage_producer.initiator == owner:
 		return
+	
+	if damage_producer.initiator == owner:
+		return
 
 	damage_producer.emit_signal("damage_produced")
 	

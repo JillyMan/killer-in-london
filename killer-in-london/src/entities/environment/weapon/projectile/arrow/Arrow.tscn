@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=1]
 [ext_resource path="res://src/entities/environment/weapon/projectile/arrow/Arrow.gd" type="Script" id=2]
+[ext_resource path="res://src/libs/damage_system/DamageProducer.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.73155, 1.10104 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.36554, 2.30632 )
 
 [node name="Arrow" type="KinematicBody2D"]
+collision_layer = 0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -12,3 +20,15 @@ rotation = 3.14159
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 368, 384, 16, 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="DamageProducer" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource( 3 )
+damage_type = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageProducer"]
+shape = SubResource( 2 )
