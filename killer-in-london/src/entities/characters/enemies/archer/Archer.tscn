@@ -1,0 +1,104 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://src/entities/characters/enemies/base_enemy/BaseEnemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/entities/characters/enemies/archer/Archer.gd" type="Script" id=2]
+[ext_resource path="res://src/entities/environment/weapon/bow/Bow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=4]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/BehaviorTree.gd" type="Script" id=5]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/branch_task/DynamicGuardSelector.gd" type="Script" id=6]
+[ext_resource path="res://src/behavior_tree_extensions/guards/IsObjectInSignGuard.gd" type="Script" id=7]
+[ext_resource path="res://src/behavior_tree_extensions/actions/steering/Wander.gd" type="Script" id=8]
+[ext_resource path="res://src/behavior_tree_extensions/actions/steering/FollowPathToPoint.gd" type="Script" id=9]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/branch_task/Sequence.gd" type="Script" id=10]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/branch_task/Parallel.gd" type="Script" id=11]
+[ext_resource path="res://src/behavior_tree_extensions/actions/Attack.gd" type="Script" id=12]
+[ext_resource path="res://src/behavior_tree_extensions/actions/CommitEnemyLastSeenPosition.gd" type="Script" id=13]
+[ext_resource path="res://src/behavior_tree_extensions/actions/IsObjectClose.gd" type="Script" id=14]
+[ext_resource path="res://src/behavior_tree_extensions/actions/steering/Evade.gd" type="Script" id=15]
+[ext_resource path="res://src/entities/environment/weapon/projectile/arrow/Arrow.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/particles/BloodEmitting.tres" type="Material" id=17]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.73402, 2.7424 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9.1887, 12.2408 )
+
+[node name="Archer" instance=ExtResource( 1 )]
+collision_layer = 4
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+position = Vector2( -0.242985, -16.118 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 32, 416, 16, 32 )
+
+[node name="SignRayCast" parent="." index="2"]
+position = Vector2( -3.8147e-06, 0.122084 )
+
+[node name="Bow" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( 6.88335, -12.0248 )
+projectile_packed_scene = ExtResource( 16 )
+
+[node name="BehaviorTree" type="Node" parent="." index="4"]
+script = ExtResource( 5 )
+host_node_path = NodePath("..")
+
+[node name="DynamicGuardSelector" type="Node" parent="BehaviorTree" index="0"]
+script = ExtResource( 6 )
+
+[node name="IsObjectInSign" type="Node" parent="BehaviorTree/DynamicGuardSelector" index="0"]
+script = ExtResource( 7 )
+object_property_name = "enemy"
+
+[node name="DynamicGuardSelector" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign" index="0"]
+script = ExtResource( 6 )
+
+[node name="IsObjectClose" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign/DynamicGuardSelector" index="0"]
+script = ExtResource( 14 )
+distance = 64.0
+object_field_name = "enemy"
+
+[node name="Evade" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign/DynamicGuardSelector/IsObjectClose" index="0"]
+script = ExtResource( 15 )
+target_field_name = "enemy"
+
+[node name="Parallel" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign/DynamicGuardSelector" index="1"]
+script = ExtResource( 11 )
+
+[node name="CommitEnemyLastSeenPosition" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign/DynamicGuardSelector/Parallel" index="0"]
+script = ExtResource( 13 )
+
+[node name="Attack" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign/DynamicGuardSelector/Parallel" index="1"]
+script = ExtResource( 12 )
+target_field_name = "enemy"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/DynamicGuardSelector" index="1"]
+script = ExtResource( 10 )
+
+[node name="FollowPathToPoint" type="Node" parent="BehaviorTree/DynamicGuardSelector/Sequence" index="0"]
+script = ExtResource( 9 )
+point_field_name = "enemy_last_seen_position"
+
+[node name="Wander" type="Node" parent="BehaviorTree/DynamicGuardSelector/Sequence" index="1"]
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+shape = SubResource( 1 )
+
+[node name="HitBox" parent="." index="6"]
+position = Vector2( 0.122086, -7.56937 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource( 2 )
+
+[node name="BloodEffect" type="Particles2D" parent="." index="8"]
+position = Vector2( 1.84464, -28.8846 )
+emitting = false
+amount = 32
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+process_material = ExtResource( 17 )

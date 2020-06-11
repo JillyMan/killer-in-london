@@ -15,7 +15,11 @@ func fixed_tick(delta):
 
 func enter(payload):
 	player = host
+	player.set_trail(true)
 	time_accum = 0
 	dash_max_time_ = player.dash_time_sec
 	move_dir = player.get_move_dir()
 	pass
+
+func exit(payload):
+	player.set_trail(false)

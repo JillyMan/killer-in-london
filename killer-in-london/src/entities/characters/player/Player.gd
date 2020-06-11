@@ -8,6 +8,7 @@ onready var weapon_position = $AnimationTransorm/WeaponPosition
 onready var axe = $AnimationTransorm/WeaponPosition/Axe
 onready var start_transform = axe.transform
 onready var animation_player = $AnimationTransorm/AnimationPlayer
+onready var trail_effect = $AnimationTransorm/Trail
 
 var with_axe : bool = true
 var is_coming_axe : bool = false
@@ -15,6 +16,10 @@ var is_coming_axe : bool = false
 func _ready():
 	axe.connect("on_weapon_returned", self, "_on_weapon_returned")
 	axe.connect("on_return_failed", self,  "_on_try_return_weapon_failed")
+
+func set_trail(value : bool):
+	trail_effect.emitting = value
+	pass
 
 func _attach_weapon(weapon):
 	get_tree().current_scene.remove_child(weapon)
@@ -48,23 +53,20 @@ func _on_weapon_returned():
 	_attach_weapon(axe)
 	with_axe = true
 	is_coming_axe = false
-	print(throw_kd)
-	kd_timer.start(throw_kd)
+
+	if throw_kd > 0:
+		kd_timer.start(throw_kd)
 	pass
 
 func _check_mouse():
-	if with_axe: 
-		if Input.is_action_just_pressed("mouse_attack"):
-			axe.rotate(PI/2)
-		if Input.is_action_just_released("mouse_attack"):
-			axe.rotate(-PI/2)
+	if not Input.is_action_just_pressed("mouse_throw_weapon"):
+		return
 
-	if Input.is_action_just_pressed("mouse_throw_weapon"):
-		if with_axe:
-			if kd_timer.time_left == 0:
-				_throw_weapon(get_global_mouse_position())
-		elif not is_coming_axe:
-			_return_weapon()
+	if with_axe:
+		if kd_timer.time_left == 0:
+			_throw_weapon(get_global_mouse_position())
+	elif not is_coming_axe:
+		_return_weapon()
 	pass
 
 func _update_animation():

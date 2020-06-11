@@ -1,14 +1,32 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/entities/characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/cleric spritesheet calciumtrice.png" type="Texture" id=2]
 [ext_resource path="res://src/entities/environment/weapon/axe/Axe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/player_icon.png" type="Texture" id=4]
 [ext_resource path="res://src/entities/characters/player/PlayerFSM.gd" type="Script" id=5]
 [ext_resource path="res://src/entities/characters/player/state/Moving.gd" type="Script" id=7]
 [ext_resource path="res://src/entities/characters/player/state/Dash.gd" type="Script" id=9]
 
-[sub_resource type="Animation" id=1]
-resource_name = "player_idle"
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.781818 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.598864 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+trail_size_modifier = SubResource( 4 )
+gravity = Vector3( 0, 0, 0 )
+scale_curve = SubResource( 2 )
+color = Color( 1, 1, 1, 0.0823529 )
+
+[sub_resource type="Animation" id=6]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:animation")
@@ -47,8 +65,7 @@ tracks/2/keys = {
 "values": [ Vector2( 6.50663, -12.8358 ), Vector2( 6.20893, -12.9549 ), Vector2( 5.43492, -12.3595 ), Vector2( 6.32801, -12.6572 ), Vector2( 6.38755, -12.7763 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "player_walk"
+[sub_resource type="Animation" id=7]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("WeaponPosition:position")
@@ -87,104 +104,103 @@ tracks/2/keys = {
 "values": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 9 ]
 }
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 2 )
 region = Rect2( 32, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 2 )
 region = Rect2( 64, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 2 )
 region = Rect2( 96, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 2 )
 region = Rect2( 128, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 2 )
 region = Rect2( 160, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 2 )
 region = Rect2( 192, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 2 )
 region = Rect2( 224, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 2 )
 region = Rect2( 256, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 2 )
 region = Rect2( 288, 64, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=19]
 atlas = ExtResource( 2 )
 region = Rect2( 32, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=20]
 atlas = ExtResource( 2 )
 region = Rect2( 64, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 2 )
 region = Rect2( 96, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 2 )
 region = Rect2( 128, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 2 )
 region = Rect2( 160, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 2 )
 region = Rect2( 192, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 2 )
 region = Rect2( 224, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=21]
+[sub_resource type="AtlasTexture" id=26]
 atlas = ExtResource( 2 )
 region = Rect2( 256, 0, 32, 32 )
 
-[sub_resource type="AtlasTexture" id=22]
+[sub_resource type="AtlasTexture" id=27]
 atlas = ExtResource( 2 )
 region = Rect2( 288, 0, 32, 32 )
 
-[sub_resource type="SpriteFrames" id=23]
+[sub_resource type="SpriteFrames" id=28]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
 "loop": true,
 "name": "player_walk",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ],
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
 "loop": true,
 "name": "player_idle",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 7.79388, 2.75777 )
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( -0.255775, -2.30198 )
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 1 )
@@ -194,26 +210,37 @@ friction = 0.3
 [node name="AnimationTransorm" type="Position2D" parent="."]
 position = Vector2( 0.29105, 2.3284 )
 
+[node name="Trail" type="Particles2D" parent="AnimationTransorm"]
+position = Vector2( 0.429283, -16.0214 )
+emitting = false
+amount = 5
+lifetime = 0.25
+speed_scale = 3.56
+local_coords = false
+process_material = SubResource( 5 )
+texture = ExtResource( 4 )
+
 [node name="WeaponPosition" type="Position2D" parent="AnimationTransorm"]
-position = Vector2( 6.5239, -13.5476 )
+position = Vector2( 7.23856, -14.007 )
 
 [node name="Axe" parent="AnimationTransorm/WeaponPosition" instance=ExtResource( 3 )]
+
 position = Vector2( 1.39782, -6.42602 )
 rotation = 1.95955
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTransorm"]
-anims/player_idle = SubResource( 1 )
-anims/player_walk = SubResource( 2 )
+anims/player_idle = SubResource( 6 )
+anims/player_walk = SubResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="AnimationTransorm"]
 position = Vector2( 0.220367, -16.1971 )
-frames = SubResource( 23 )
+frames = SubResource( 28 )
 animation = "player_walk"
-frame = 8
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.471811, -0.511682 )
-shape = SubResource( 24 )
+shape = SubResource( 29 )
 
 [node name="KdTimer" type="Timer" parent="."]
 one_shot = true

@@ -23,7 +23,7 @@ tracks/0/keys = {
 script = ExtResource( 2 )
 
 [node name="RotationPivot" type="Node2D" parent="."]
-rotation = 1.5708
+rotation = -1.5708
 
 [node name="Sprite" type="Sprite" parent="RotationPivot"]
 position = Vector2( 5.97247, 3.67537 )

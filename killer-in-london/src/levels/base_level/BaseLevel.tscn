@@ -8,3 +8,7 @@ script = ExtResource( 1 )
 
 [node name="NavigationMap" parent="." instance=ExtResource( 2 )]
 cell_size = Vector2( 16, 16 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="YSort"]

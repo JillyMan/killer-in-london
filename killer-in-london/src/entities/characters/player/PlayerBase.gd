@@ -9,6 +9,9 @@ export var dash_time_sec : float = 0.25
 
 var current_dir : Vector2
 
+func set_trail(value : bool):
+	pass
+
 func get_move_dir() -> Vector2:
 	return current_dir
 
@@ -24,3 +27,7 @@ func update_move_dir():
 		current_dir.x = 1
 
 	current_dir = current_dir.normalized()
+
+
+func get_velocity():
+	return get_move_dir() * speed

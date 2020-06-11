@@ -4,8 +4,8 @@ extends Node
 signal damage_taken
 
 export var hp : int = 1
-export var subject_node_path : NodePath
 
+export var subject_node_path : NodePath
 var subject : Node
 
 

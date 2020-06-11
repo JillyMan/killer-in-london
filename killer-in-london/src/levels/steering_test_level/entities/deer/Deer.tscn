@@ -1,0 +1,68 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/levels/steering_test_level/entities/deer/Deer.gd" type="Script" id=1]
+[ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=2]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/BehaviorTree.gd" type="Script" id=3]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/branch_task/DynamicGuardSelector.gd" type="Script" id=4]
+[ext_resource path="res://src/behavior_tree_extensions/guards/IsObjectInSignGuard.gd" type="Script" id=5]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/branch_task/Parallel.gd" type="Script" id=6]
+[ext_resource path="res://src/behavior_tree_extensions/actions/CommitEnemyLastSeenPosition.gd" type="Script" id=7]
+[ext_resource path="res://src/behavior_tree_extensions/actions/steering/PursueTarget.gd" type="Script" id=8]
+[ext_resource path="res://src/behavior_tree_extensions/actions/steering/SeekToPoint.gd" type="Script" id=9]
+[ext_resource path="res://addons/libgdx-behavior-tree/src/btree/branch_task/Sequence.gd" type="Script" id=10]
+[ext_resource path="res://src/behavior_tree_extensions/actions/steering/Wander.gd" type="Script" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.4043, 2.03831 )
+
+[node name="Deer" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.45187, -8.13369 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 112, 464, 16, 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -0.242985 )
+shape = SubResource( 1 )
+
+[node name="ObstacleChecker" type="RayCast2D" parent="."]
+enabled = true
+
+[node name="BehaviorTree" type="Node" parent="."]
+script = ExtResource( 3 )
+host_node_path = NodePath("..")
+
+[node name="DynamicGuardSelector" type="Node" parent="BehaviorTree"]
+script = ExtResource( 4 )
+
+[node name="IsObjectInSign" type="Node" parent="BehaviorTree/DynamicGuardSelector"]
+script = ExtResource( 5 )
+object_property_name = "hunter"
+
+[node name="Parallel" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign"]
+script = ExtResource( 6 )
+policy_type = 0
+orchestrator_type = 0
+
+[node name="CommitEnemyLastSeenPosition" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign/Parallel"]
+script = ExtResource( 7 )
+
+[node name="PursueTarget" type="Node" parent="BehaviorTree/DynamicGuardSelector/IsObjectInSign/Parallel"]
+script = ExtResource( 8 )
+target_field_name = "hunter"
+
+[node name="Sequence" type="Node" parent="BehaviorTree/DynamicGuardSelector"]
+script = ExtResource( 10 )
+
+[node name="SeekToPoint" type="Node" parent="BehaviorTree/DynamicGuardSelector/Sequence"]
+script = ExtResource( 9 )
+point_field_name = "enemy_last_seen_position"
+
+[node name="Wander" type="Node" parent="BehaviorTree/DynamicGuardSelector/Sequence"]
+script = ExtResource( 11 )
+
+[node name="SignRayCast" type="RayCast2D" parent="."]
+enabled = true
