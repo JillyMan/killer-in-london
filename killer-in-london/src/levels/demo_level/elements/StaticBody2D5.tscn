@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/dungeon_tileset_calciumtrice.png" type="Texture" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 19.0985
+
+[node name="StaticBody2D5" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 288, 240, 32, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.128517, 2.05619 )
+shape = SubResource( 1 )
