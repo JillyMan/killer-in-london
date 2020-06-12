@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/behavior_tree_extensions/actions/Attack.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Axe",
+"language": "GDScript",
+"path": "res://src/entities/environment/weapon/axe/Axe.gd"
+}, {
 "base": "FSM",
 "class": "AxeFSM",
 "language": "GDScript",
@@ -248,6 +253,7 @@ _global_script_class_icons={
 "AlwaysRunning": "",
 "AstarGridPathfinder": "",
 "Attack": "",
+"Axe": "",
 "AxeFSM": "",
 "BehaviorTree": "res://addons/libgdx-behavior-tree/assets/icons/root_icon.png",
 "BranchTask": "res://addons/libgdx-behavior-tree/assets/icons/branch_task.png",

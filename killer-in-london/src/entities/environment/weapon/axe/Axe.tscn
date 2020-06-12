@@ -9,7 +9,7 @@
 [ext_resource path="res://src/libs/damage_system/DamageProducer.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7.24935, 2.69941 )
+extents = Vector2( 2.8797, 1.56321 )
 
 [sub_resource type="Curve" id=2]
 min_value = -500.0
@@ -50,24 +50,24 @@ scale_curve = SubResource( 5 )
 color = Color( 0.0745098, 0.952941, 0.952941, 1 )
 
 [node name="Axe" type="KinematicBody2D"]
-position = Vector2( 0.0897446, 0 )
+position = Vector2( -0.0287514, 0.394991 )
 rotation = -0.00618112
 script = ExtResource( 2 )
 max_throw_distance = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.29635, -3.07684 )
+position = Vector2( -2.8523, -4.06384 )
 rotation = 0.00601894
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1.25643, -8.55936 )
+position = Vector2( 1.28481, -8.50697 )
 rotation = 0.00419701
 texture = ExtResource( 1 )
 region_rect = Rect2( 240, 384, 16, 16 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( -3.65967, -3.99037 )
+position = Vector2( -3.6313, -3.93798 )
 amount = 40
 process_material = SubResource( 8 )
 

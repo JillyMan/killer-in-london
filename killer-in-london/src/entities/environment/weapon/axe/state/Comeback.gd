@@ -2,7 +2,7 @@ extends State
 
 const MIN_DISTANCE_BTW_AXE_AND_THROW_DEST = 20.0
 
-var throwable_obj : KinematicBody2D
+var throwable_obj : Axe
 var comeback_to_node : Node2D
 var throw_len : float
 
@@ -35,7 +35,12 @@ func _hard_return() -> void:
 	return
 
 func enter(payload):
-	assert(host is KinematicBody2D)
-	throwable_obj = host
+	assert(host is Axe)
+	throwable_obj = host as Axe
+	throwable_obj._set_collision(false)
 	comeback_to_node = payload.come_to
 	throw_len = (throwable_obj.global_position - comeback_to_node.global_position).length()
+
+func exit(_payload):
+	throwable_obj._set_collision(true)
+	

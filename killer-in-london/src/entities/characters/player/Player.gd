@@ -28,10 +28,10 @@ func _attach_weapon(weapon):
 	pass
 
 func _detach_weapon(weapon):
-	var prev_pos = weapon.global_position
+#	var prev_pos = weapon.global_position
 	weapon_position.remove_child(weapon)
 	get_tree().current_scene.add_child(weapon)
-	weapon.global_position = prev_pos
+	weapon.global_position = global_position
 	pass
 
 func _throw_weapon(dest_point):

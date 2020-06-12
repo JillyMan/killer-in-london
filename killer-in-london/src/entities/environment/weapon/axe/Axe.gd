@@ -1,3 +1,4 @@
+class_name Axe
 extends KinematicBody2D
 
 export var throw_speed : float = 2000
@@ -6,10 +7,16 @@ export var comeback_speed : float = 2000
 
 export var max_throw_distance : float = 100
 
+onready var collision : CollisionShape2D = $CollisionShape2D
 onready var damage_producer_shape : CollisionShape2D = $DamageProducer/CollisionShape2D2
 
 signal on_weapon_returned
 signal on_return_failed
+
+func _set_collision(value : bool):
+	collision.disabled = !value
+	damage_producer_shape.disabled = !value
+	
 
 func throw(target : Vector2):
 	$FSM.set_throwing_state(target)

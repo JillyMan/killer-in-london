@@ -1,6 +1,6 @@
 extends State
 
-const MIN_DISTANCE_BTW_AXE_AND_THROW_DEST = 5
+const MIN_DISTANCE_BTW_AXE_AND_THROW_DEST = 20
 
 var player : Node2D = null
 var throwable_obj : KinematicBody2D = null
